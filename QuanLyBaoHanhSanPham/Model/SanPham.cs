@@ -15,7 +15,6 @@ namespace QuanLyBaoHanhSanPham.Model
         public int SanPhamID { get; set; }
         public string TenSanPham { get; set; }
         public string SoSeri { get; set; }
-        public DateTime NgaySanXuat { get; set; }
         public decimal Gia { get; set; }
         public string Mota { get; set; }
         public string TrangThai { get; set; }

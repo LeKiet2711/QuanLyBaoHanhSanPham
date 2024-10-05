@@ -71,18 +71,7 @@ namespace QuanLyBaoHanhSanPham
             _khachHangService.DeleteByKhachHangID(khachHangID);
             LoadKhachHangData();
         }
-        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                txtKhachHangID.Text = row.Cells["KhachHangID"].Value.ToString();
-                txtTenKhachHang.Text = row.Cells["TenKhachHang"].Value.ToString();
-                txtDiaChi.Text = row.Cells["DiaChi"].Value.ToString();
-                txtSDT.Text = row.Cells["SoDienThoai"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value.ToString();
-            }
-        }
+   
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
