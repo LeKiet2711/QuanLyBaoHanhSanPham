@@ -42,12 +42,13 @@
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(348, 252);
+            this.btnThem.Location = new System.Drawing.Point(903, 237);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(128, 62);
             this.btnThem.TabIndex = 0;
@@ -58,11 +59,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 320);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 305);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1462, 337);
+            this.dataGridView1.Size = new System.Drawing.Size(1287, 337);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -89,7 +90,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(482, 252);
+            this.btnSua.Location = new System.Drawing.Point(1171, 237);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(128, 62);
             this.btnSua.TabIndex = 5;
@@ -99,7 +100,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(616, 252);
+            this.btnXoa.Location = new System.Drawing.Point(1037, 237);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(128, 62);
             this.btnXoa.TabIndex = 6;
@@ -166,11 +167,22 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Email";
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(12, 237);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(128, 62);
+            this.btnLoad.TabIndex = 14;
+            this.btnLoad.Text = "Làm mới";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 717);
+            this.ClientSize = new System.Drawing.Size(1315, 662);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSDT);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 

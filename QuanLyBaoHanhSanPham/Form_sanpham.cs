@@ -36,26 +36,40 @@ namespace QuanLyBaoHanhSanPham
 
         private void btnthem_Click(object sender, EventArgs e)
         {
-            var sanPham = new SanPham();
+            try
             {
-                sanPham.SanPhamID = int.Parse(txtid.Text);
-                sanPham.TenSanPham = txttensp.Text;
-                sanPham.Mota = txtmota.Text;    
-                sanPham.Gia = int.Parse(txtgia.Text);
-                sanPham .SoSeri = txtsoseri.Text;
-                sanPham.TrangThai = txttrangthai.Text;  
-            };
-            _sanPhamService.Create(sanPham);
-            MessageBox.Show("Them thanh cong");
-            LoadsanPhamData();
+                var sanPham = new SanPham
+                {
+                    SanPhamID = int.Parse(txtid.Text),
+                    TenSanPham = txttensp.Text,
+                    Mota = txtmota.Text,
+                    Gia = int.Parse(txtgia.Text),
+                    SoSeri = txtsoseri.Text,
+                    TrangThai = txttrangthai.Text
+                };
+                _sanPhamService.Create(sanPham);
+                MessageBox.Show("Thêm thành công");
+                LoadsanPhamData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tạo mới sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
         {
-            var sanphamId = int.Parse(txtid.Text);
-            _sanPhamService.Delete(sanphamId);
-            MessageBox.Show("Xoa thanh cong");
-            LoadsanPhamData ();
+            try
+            {
+                var sanphamId = int.Parse(txtid.Text);
+                _sanPhamService.Delete(sanphamId);
+                MessageBox.Show("Xóa thành công");
+                LoadsanPhamData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xóa sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnload_Click(object sender, EventArgs e)
@@ -70,18 +84,25 @@ namespace QuanLyBaoHanhSanPham
 
         private void btnsua_Click(object sender, EventArgs e)
         {
-            var sanPham = new SanPham();
+            try
             {
-                sanPham.SanPhamID = int.Parse(txtid.Text);
-                sanPham.TenSanPham = txttensp.Text;
-                sanPham.Mota = txtmota.Text;
-                sanPham.Gia = int.Parse(txtgia.Text);
-                sanPham.SoSeri = txtsoseri.Text;
-                sanPham.TrangThai = txttrangthai.Text;
-            };
-            _sanPhamService.Update(sanPham.SanPhamID,sanPham);
-            MessageBox.Show("Sua thanh cong");
-            LoadsanPhamData();
+                var sanPham = new SanPham
+                {
+                    SanPhamID = int.Parse(txtid.Text),
+                    TenSanPham = txttensp.Text,
+                    Mota = txtmota.Text,
+                    Gia = int.Parse(txtgia.Text),
+                    SoSeri = txtsoseri.Text,
+                    TrangThai = txttrangthai.Text
+                };
+                _sanPhamService.Update(sanPham.SanPhamID, sanPham);
+                MessageBox.Show("Sửa thành công");
+                LoadsanPhamData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi cập nhật sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
        
@@ -113,38 +134,45 @@ namespace QuanLyBaoHanhSanPham
 
         private void btn_sapxep_Click(object sender, EventArgs e)
         {
-            List<SanPham> sanPhamList = _sanPhamService.SapXep();
-
-            // Tải dữ liệu sản phẩm đã sắp xếp vào DataGridView hoặc phương thức hiển thị dữ liệu khác
-            dataGridView1.DataSource = sanPhamList;
+            try
+            {
+                List<SanPham> sanPhamList = _sanPhamService.SapXep();
+                dataGridView1.DataSource = sanPhamList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi sắp xếp sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void btn_timkiem_Click(object sender, EventArgs e)
         {
-            int sanPhamID;
-
-            // Kiểm tra xem ID có hợp lệ không
-            if (int.TryParse(txt_timkiemid.Text, out sanPhamID))
+            try
             {
-                // Gọi phương thức tìm kiếm
-                List<SanPham> sanPhamList = _sanPhamService.TimKiem(sanPhamID);
-
-                if (sanPhamList.Count > 0)
+                int sanPhamID;
+                if (int.TryParse(txt_timkiemid.Text, out sanPhamID))
                 {
-                    // Hiển thị sản phẩm trong DataGridView
-                    dataGridView2.DataSource = sanPhamList;
+                    List<SanPham> sanPhamList = _sanPhamService.TimKiem(sanPhamID);
+                    if (sanPhamList.Count > 0)
+                    {
+                        dataGridView2.DataSource = sanPhamList;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy sản phẩm với ID này.");
+                        dataGridView2.DataSource = null;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy sản phẩm với ID này.");
-                    dataGridView2.DataSource = null; // Xóa nguồn dữ liệu để tránh hiển thị thông tin cũ
+                    MessageBox.Show("Vui lòng nhập ID hợp lệ.");
+                    dataGridView2.DataSource = null;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng nhập ID hợp lệ.");
-                dataGridView2.DataSource = null; // Xóa nguồn dữ liệu để tránh hiển thị thông tin cũ
+                MessageBox.Show($"Lỗi khi tìm kiếm sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

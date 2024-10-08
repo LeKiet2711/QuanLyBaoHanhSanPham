@@ -33,16 +33,23 @@ namespace QuanLyBaoHanhSanPham
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var khachHang = new KhachHang
+            try
             {
-                KhachHangID = int.Parse(txtKhachHangID.Text),
-                TenKhachHang = txtTenKhachHang.Text,
-                DiaChi = txtDiaChi.Text,
-                SoDienThoai = txtSDT.Text,
-                Email = txtEmail.Text
-            };
-            _khachHangService.Create(khachHang);
-            LoadKhachHangData();
+                var khachHang = new KhachHang
+                {
+                    KhachHangID = int.Parse(txtKhachHangID.Text),
+                    TenKhachHang = txtTenKhachHang.Text,
+                    DiaChi = txtDiaChi.Text,
+                    SoDienThoai = txtSDT.Text,
+                    Email = txtEmail.Text
+                };
+                _khachHangService.Create(khachHang);
+                LoadKhachHangData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tạo mới khách hàng: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadKhachHangData()
@@ -53,23 +60,37 @@ namespace QuanLyBaoHanhSanPham
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            var khachHang = new KhachHang
+            try
             {
-                KhachHangID = int.Parse(txtKhachHangID.Text),
-                TenKhachHang = txtTenKhachHang.Text,
-                DiaChi = txtDiaChi.Text,
-                SoDienThoai = txtSDT.Text,
-                Email = txtEmail.Text
-            };
-            _khachHangService.UpdateByKhachHangID(khachHang.KhachHangID, khachHang);
-            LoadKhachHangData();
+                var khachHang = new KhachHang
+                {
+                    KhachHangID = int.Parse(txtKhachHangID.Text),
+                    TenKhachHang = txtTenKhachHang.Text,
+                    DiaChi = txtDiaChi.Text,
+                    SoDienThoai = txtSDT.Text,
+                    Email = txtEmail.Text
+                };
+                _khachHangService.UpdateByKhachHangID(khachHang.KhachHangID, khachHang);
+                LoadKhachHangData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"lỗi khi update khách hàng: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            var khachHangID = int.Parse(txtKhachHangID.Text);
-            _khachHangService.DeleteByKhachHangID(khachHangID);
-            LoadKhachHangData();
+            try
+            {
+                var khachHangID = int.Parse(txtKhachHangID.Text);
+                _khachHangService.DeleteByKhachHangID(khachHangID);
+                LoadKhachHangData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xóa khách hàng: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
    
 
@@ -85,6 +106,16 @@ namespace QuanLyBaoHanhSanPham
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
             }
 
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            txtKhachHangID.Text = "";
+            txtTenKhachHang.Text = "";
+            txtSDT.Text = "";
+            txtEmail.Text = "";
+            txtDiaChi.Text = "";
+            txtKhachHangID.Focus();
         }
     }
 }
