@@ -161,6 +161,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_BaoHanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BaoHanh.Designer.cs">
+      <DependentUpon>Form_BaoHanh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Dangnhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,11 +191,15 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\BaoHanhService.cs" />
     <Compile Include="Service\KhachHangService.cs" />
     <Compile Include="Service\SanPhamService.cs" />
     <Compile Include="Service\UserService.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BaoHanh.resx">
+      <DependentUpon>Form_BaoHanh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Dangnhap.resx">
       <DependentUpon>Form_Dangnhap.cs</DependentUpon>
@@ -231,6 +241,11 @@
     <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.7.100.14\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="image\CHKB_IMAGE\search.png" />
+    <None Include="image\CHKB_IMAGE\add.png" />
+    <None Include="image\CHKB_IMAGE\cap_nhat.png" />
+    <None Include="image\CHKB_IMAGE\remove.png" />
+    <None Include="image\CHKB_IMAGE\update.png" />
     <Content Include="image\chris-thompson-mi7W_V4slxg-unsplash.jpg" />
     <Content Include="image\delete.png" />
     <Content Include="image\exit.png" />
