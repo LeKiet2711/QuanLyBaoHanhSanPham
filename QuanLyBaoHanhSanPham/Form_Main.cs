@@ -16,6 +16,7 @@ namespace QuanLyBaoHanhSanPham
         public Form_Main()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private Form currentChildForm;
         private void OpenChildForm(Form ChildForm)
@@ -27,7 +28,15 @@ namespace QuanLyBaoHanhSanPham
             currentChildForm = ChildForm;
             ChildForm.TopLevel = false;
             ChildForm.FormBorderStyle = FormBorderStyle.None;
-            ChildForm.Dock = DockStyle.Fill;
+            ChildForm.StartPosition = FormStartPosition.Manual; // Đặt StartPosition là Manual
+            int x = (panel_body.Width - ChildForm.Width) / 2;
+            int y = (panel_body.Height - ChildForm.Height) / 2;
+            ChildForm.Location = new Point(x, y); // Cập nhật vị trí
+                                                  //ChildForm.Dock = DockStyle.Fill;
+                                                  //panel_body.Controls.Add(ChildForm);
+                                                  //panel_body.Tag = ChildForm;
+                                                  //ChildForm.BringToFront();
+                                                  //ChildForm.Show();
             panel_body.Controls.Add(ChildForm);
             panel_body.Tag = ChildForm;
             ChildForm.BringToFront();

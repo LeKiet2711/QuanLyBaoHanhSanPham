@@ -23,6 +23,7 @@ namespace QuanLyBaoHanhSanPham
             InitializeComponent();
             var database = new Connection().GetDatabase();
             _sanPhamService = new SanPhamService(database);
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void LoadsanPhamData()
         {
@@ -34,7 +35,82 @@ namespace QuanLyBaoHanhSanPham
 
         }
 
-        private void btnthem_Click(object sender, EventArgs e)
+       
+
+      
+
+      
+
+        private void Form_sanpham_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+       
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                txtid.Text = row.Cells["SanPhamID"].Value.ToString();
+                txttensp.Text = row.Cells["TenSanPham"].Value.ToString();
+                txtsoseri.Text = row.Cells["SoSeri"].Value.ToString();
+                txtgia.Text = row.Cells["Gia"].Value.ToString();
+                txtmota.Text = row.Cells["Mota"].Value.ToString();
+                txttrangthai.Text = row.Cells["TrangThai"].Value.ToString();
+            }
+        }
+
+      
+
+        private void btn_sapxep_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<SanPham> sanPhamList = _sanPhamService.SapXep();
+                dataGridView1.DataSource = sanPhamList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi sắp xếp sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btn_timkiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int sanPhamID;
+                if (int.TryParse(txt_timkiemid.Text, out sanPhamID))
+                {
+                    List<SanPham> sanPhamList = _sanPhamService.TimKiem(sanPhamID);
+                    if (sanPhamList.Count > 0)
+                    {
+                        dataGridView2.DataSource = sanPhamList;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy sản phẩm với ID này.");
+                        dataGridView2.DataSource = null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập ID hợp lệ.");
+                    dataGridView2.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tìm kiếm sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -57,7 +133,7 @@ namespace QuanLyBaoHanhSanPham
             }
         }
 
-        private void btnxoa_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
             try
             {
@@ -72,17 +148,7 @@ namespace QuanLyBaoHanhSanPham
             }
         }
 
-        private void btnload_Click(object sender, EventArgs e)
-        {
-            LoadsanPhamData();  
-        }
-
-        private void Form_sanpham_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnsua_Click(object sender, EventArgs e)
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
             try
             {
@@ -105,23 +171,7 @@ namespace QuanLyBaoHanhSanPham
             }
         }
 
-       
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                txtid.Text = row.Cells["SanPhamID"].Value.ToString();
-                txttensp.Text = row.Cells["TenSanPham"].Value.ToString();
-                txtsoseri.Text = row.Cells["SoSeri"].Value.ToString();
-                txtgia.Text = row.Cells["Gia"].Value.ToString();
-                txtmota.Text = row.Cells["Mota"].Value.ToString();
-                txttrangthai.Text = row.Cells["TrangThai"].Value.ToString();
-            }
-        }
-
-        private void btnlammmoi_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
             txttrangthai.Text = "";
             txttensp.Text = "";
@@ -132,22 +182,14 @@ namespace QuanLyBaoHanhSanPham
             txtid.Focus();
         }
 
-        private void btn_sapxep_Click(object sender, EventArgs e)
+        private void pictureBox5_Click(object sender, EventArgs e)
         {
-            try
-            {
-                List<SanPham> sanPhamList = _sanPhamService.SapXep();
-                dataGridView1.DataSource = sanPhamList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi sắp xếp sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            LoadsanPhamData();
         }
 
-        private void btn_timkiem_Click(object sender, EventArgs e)
+        private void pictureBox7_Click(object sender, EventArgs e)
         {
+
             try
             {
                 int sanPhamID;
