@@ -88,6 +88,7 @@
             this.btnDangxuat.TabIndex = 6;
             this.btnDangxuat.Text = "Đăng xuất";
             this.btnDangxuat.UseVisualStyleBackColor = true;
+            this.btnDangxuat.Click += new System.EventHandler(this.btnDangxuat_Click);
             // 
             // label1
             // 

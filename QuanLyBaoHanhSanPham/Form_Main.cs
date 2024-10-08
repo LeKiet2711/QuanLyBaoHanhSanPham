@@ -13,10 +13,12 @@ namespace QuanLyBaoHanhSanPham
     public partial class Form_Main : Form
     {
         public string Taikhoan { get; set; }
+        Form f;
         public Form_Main()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            f = this;
         }
         private Form currentChildForm;
         private void OpenChildForm(Form ChildForm)
@@ -56,6 +58,10 @@ namespace QuanLyBaoHanhSanPham
         private void btnBaoHanh_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Form_BaoHanh());
+        }
+
+        private void btnDangxuat_Click(object sender, EventArgs e)
+        {
         }
     }
 }
