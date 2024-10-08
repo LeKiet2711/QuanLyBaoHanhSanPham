@@ -55,7 +55,7 @@ namespace QuanLyBaoHanhSanPham
 
         private void btnBaoHanh_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new Form_BaoHanh());
         }
     }
 }
